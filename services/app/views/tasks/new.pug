@@ -1,0 +1,13 @@
+extends /layouts/application.pug
+
+block content
+    h2.text-center Create new task
+    .row.mt-3
+      .col-sm-6.mx-auto
+        +formFor(f, { url: urlFor('tasks'), method: 'post' })
+          +input(f, 'name')
+          +select(f, 'taskStatusId', { list: statusList })
+          +select(f, 'assignedToId', { list: userList })
+          +textarea(f, 'description')
+          +textarea(f, 'tagsName')
+          +button(f)

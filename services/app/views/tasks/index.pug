@@ -1,0 +1,43 @@
+extends /layouts/application.pug
+
+block content
+  h3.text-xs-center Tasks
+  a(href=urlFor('newTask')) New Task
+  div
+    +formFor(f, { url: urlFor('tasks'), method: 'get', classList: ['form-row'] })
+        if userId
+          .col-sm
+            +select(f, 'creatorId', { list: myList })
+        .col-sm
+          +select(f, 'taskStatusId', { list: statusList })
+        .col-sm
+          +select(f, 'assignedToId', { list: userList })
+        .col-sm
+          +select(f, 'tagId', { list: tagList})
+        .col-sm
+          +button(f)
+  .row.mt-3
+      .col-sm-6.mx-auto
+        if tasks.length > 0
+          table.table
+            tr
+              th title
+              th Actions
+              th AssignedTo
+              th Status
+            for task in tasks
+              tr
+                td
+                  a(href=urlFor('taskShow', task.id))= task.name
+                td
+                  if userId === task.creatorId
+                    a(href=urlFor('taskUpdate', task.id)) Edit
+                    a(href=urlFor('taskDelete', task.id) data-method='delete' rel='nofollow' data-confirm="Are you sure you want delete this task?") Delete
+                td
+                  a(href=urlFor('userShow', task.creatorId))= task.assignedTo.fullName
+                td
+                  = task.taskStatus.name
+        else
+          p Пусто
+
+        

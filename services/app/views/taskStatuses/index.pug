@@ -1,0 +1,21 @@
+extends /layouts/application.pug
+
+block content
+  h3.text-xs-center Tasks status
+  a(href=urlFor('newtaskStatus')) New Task Status
+  .row.mt-3
+      .col-sm-6.mx-auto
+        if taskStatuses.length > 0
+          table.table
+            tr
+              th taskStatus
+              th Actions
+            for taskStatus in taskStatuses
+              tr
+                td
+                  =taskStatus.name
+                td
+                  a(href=urlFor('taskStatusUpdate', taskStatus.id)) Edit
+                  a(href=urlFor('taskStatusDelete', taskStatus.id) data-method='delete' rel='nofollow') Delete
+        else
+          p Пусто

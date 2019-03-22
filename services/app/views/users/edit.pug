@@ -1,0 +1,12 @@
+extends /layouts/application.pug
+
+block content
+    h2.text-center Edit user: #{user.fullName}
+    .row.mt-3
+      .col-sm-6.mx-auto
+        +formFor(f, { url: urlFor('userUpdate', user.id), method: 'patch' })
+          +input(f, 'email')
+          +input(f, 'firstName')
+          +input(f, 'lastName')
+          a(href=urlFor('editPassword', user.id)) Edit password
+          +button(f)

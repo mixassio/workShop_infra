@@ -1,0 +1,21 @@
+extends /layouts/application.pug
+
+block content
+  h3.text-xs-center Users
+  .row.mt-3
+      .col-sm-6.mx-auto
+        if users.length > 0
+          table.table
+            tr
+              th Name / email
+              th Actions
+            for user in users
+              tr
+                td
+                  a(href=urlFor('userShow', user.id))= user.fullName
+                td
+                  if userId === user.id
+                    a(href=urlFor('userUpdate', user.id)) Edit
+                    a(href=urlFor('userDelete', user.id) data-method='delete' rel='nofollow' data-confirm="Are you sure you want delete profile?") Delete
+        else
+          p Пусто

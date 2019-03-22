@@ -1,0 +1,11 @@
+node_modules
+.vscode
+help.md
+package-lock.json
+*dist
+789.js
+*public
+db.development.sqlite
+.DS_Store
+services/.DS_Store
+services/app/.gitignore

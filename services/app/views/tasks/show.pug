@@ -1,0 +1,17 @@
+extends /layouts/application.pug
+
+block content
+  .row
+    .col-9
+        h2 Task: #{task.name}
+        br
+        p Title: <strong>#{task.name}</strong>
+        p description: <strong>#{task.description}</strong>
+        p User creator: <strong>#{task.creator.fullName}</strong>
+        p User asign: <strong>#{task.assignedTo.fullName}</strong>
+        p Status: <strong>#{task.taskStatus.name}</strong>
+        p Creation date: <strong>#{task.createdAt}</strong>
+        p Update date: <strong>#{task.updatedAt}</strong>
+        p Tags:
+        each tag in task.Tags
+          .badge.badge-primary= tag.name
