@@ -1,5 +1,8 @@
 {
   "development": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "development2": {
     "storage": "./db.development.sqlite",
     "dialect": "sqlite"
   },
@@ -13,6 +16,6 @@
     "protocol": "postgres",
     "dialectOptions": {
       "ssl": true
-  }
+    }
   }
 }
