@@ -17,5 +17,5 @@ gulp.task('console', () => {
   });
 });
 gulp.task('server', (cb) => {
-  getServer().listen(process.env.PORT || 4000, cb);
+  getServer().listen(process.env.PORT || 3000, cb);
 });
