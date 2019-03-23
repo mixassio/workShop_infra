@@ -12,3 +12,11 @@ services:
       - "~/.bash_history:/.bash_history"
       - "./services/app:/usr/src/app:cached"
       - "/tmp:/tmp:delegated"
+  web:
+    build:
+      context: services/nginx
+      dockerfile: Dockerfile
+    ports:
+     - "8080:80"
+    depends_on:
+      - app
