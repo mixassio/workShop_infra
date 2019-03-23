@@ -8,3 +8,4 @@ db.development.sqlite
 .DS_Store
 services/.DS_Store
 services/app/.gitignore
+.env

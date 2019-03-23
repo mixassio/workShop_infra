@@ -6,8 +6,6 @@ services:
       context: services/app
       dockerfile: Dockerfile.development
     command: sh -c "make start"
-    expose:
-      - 3000
     volumes:
       - "~/.bash_history:/.bash_history"
       - "./services/app:/usr/src/app:cached"
