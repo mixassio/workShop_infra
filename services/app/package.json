@@ -23,8 +23,7 @@
     "webpack": "webpack",
     "seeds": "npm run sequelize db:seed:all",
     "migrateUndo": "npm run sequelize db:migrate:undo:all",
-    "build": "npm run webpack -- -p --env production  && npm run sequelize db:migrate",
-    "postinstall": "npm run build",
+    "build": "npm install && npm run webpack -- -p --env production  && npm run sequelize db:migrate",
     "prepublishOnly": "npm run build"
   },
   "repository": {

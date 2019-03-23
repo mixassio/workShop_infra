@@ -6,8 +6,8 @@ services:
       context: services/app
       dockerfile: Dockerfile.development
     command: sh -c "make start"
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     volumes:
       - "~/.bash_history:/.bash_history"
       - "./services/app:/usr/src/app:cached"
@@ -18,5 +18,7 @@ services:
       dockerfile: Dockerfile
     ports:
      - "8080:80"
+    volumes:
+      - "./services/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
     depends_on:
       - app
