@@ -1,7 +1,7 @@
 import request from 'supertest';
 import faker from 'faker';
 import app from '..';
-import db from '../models';
+import db from '../server/models';
 // import { user1, user2, user3 } from './__fixtures__/users';
 
 const user1 = {
