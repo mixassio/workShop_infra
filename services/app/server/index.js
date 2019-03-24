@@ -61,7 +61,7 @@ export default () => {
     return null;
   }));
   app.use(favicon());
-  app.use(serve(path.join(__dirname, 'public')));
+  app.use(serve(path.join(__dirname, '..', 'public')));
   app.use(koaLogger());
   const router = new Router();
   addRoutes(router, container);

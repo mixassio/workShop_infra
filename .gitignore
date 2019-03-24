@@ -9,3 +9,4 @@ db.development.sqlite
 services/.DS_Store
 services/app/.gitignore
 .env
+*dist

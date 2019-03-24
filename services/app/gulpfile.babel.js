@@ -2,8 +2,8 @@
 
 import gulp from 'gulp';
 import repl from 'repl';
-import getServer from '.';
-import container from './container';
+import getServer from './server';
+import container from './server/container';
 
 gulp.task('default', console.log('Hello, world and gulp'));
 
