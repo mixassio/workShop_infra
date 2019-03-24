@@ -1,3 +1,5 @@
+development-setup-env:
+	ansible-playbook ansible/development.yml -i ansible/development -vv
 
 app:
 	docker-compose up
@@ -12,4 +14,4 @@ app-setup: app-build
 	docker-compose run app npm install
 	docker-compose run app npm run webpack -- -p --env production
 	docker-compose run app npm run sequelize db:migrate
-
+	ansible-playbook ansible/development.yml -i ansible/development -vv

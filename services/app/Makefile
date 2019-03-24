@@ -10,3 +10,6 @@ publish:
 
 test:
 	npm test
+
+build:
+	rm -rf public && npm run build

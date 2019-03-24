@@ -11,9 +11,7 @@ services:
       context: services/app
       dockerfile: Dockerfile.development
     command: sh -c "make start"
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres@db/mixassio
+    env_file: ".env"
     depends_on:
       - db
     volumes:
