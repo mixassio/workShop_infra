@@ -1,4 +1,4 @@
 ---
-connect_db: "postgresql://postgres@db/mixassio"
+connect_db: "postgres://doadmin:kq8klt3saqh5wjbm@db-mixassio-do-user-4938373-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require"
 app_port: 3000
 current_env: "production"

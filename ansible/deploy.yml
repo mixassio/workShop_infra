@@ -1,0 +1,72 @@
+---
+- hosts: all
+  gather_facts: false
+
+- hosts: webservers
+  gather_facts: false
+  become: true
+  
+  tasks:
+    - name: pip
+      apt:
+        update_cache: true
+        name: python-pip
+        force: true
+    - name: docker
+      pip:
+        name: docker-py
+    - name: Create a network
+      docker_network:
+        name: "mixassio"
+
+    - template:
+        src: environment.j2
+        dest: "/root/.env"
+      tags: env
+
+    - name: download app image
+      docker_image:
+        name: "mixassio/workshop-devops-app:latest"
+        force: true
+
+    - name: download nginx image
+      docker_image:
+        name: "mixassio/workshop-devops-nginx:latest"
+        force: true
+
+    - name: start nginx
+      docker_container:
+        recreate: true
+        name: hexlet-basics-nginx
+        image: "mixassio/workshop-devops-nginx:latest"
+        state: started
+        restart_policy: always
+        published_ports:
+          - "80:8080"
+        networks:
+          - name: "mixassio"
+      tags: [webserver]
+
+    - name: start application
+      docker_container:
+        recreate: true
+        name: app
+        image: "mixassio/workshop-devops-app:latest"
+        state: started
+        restart_policy: always
+        published_ports:
+          - "3000:3000"
+        exposed_ports:
+          - "3000"
+        env:
+          NODE_ENV: "production"
+          PORT: "3000"
+          DATABASE_URL: "postgres://doadmin:kq8klt3saqh5wjbm@db-mixassio-do-user-4938373-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require"
+        volumes:
+          - "/var/run/docker.sock:/var/run/docker.sock"
+          - "/tmp:/tmp"
+          - "/opt:/opt"
+          - "/var/tmp:/var/tmp"
+        networks:
+          - name: "mixassio"
+      tags: [webserver]
